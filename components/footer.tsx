@@ -39,7 +39,7 @@ export default function Footer() {
               <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-brit-gold transition-all duration-300 group-hover:w-full"></span>
             </Link>
             <Link href="/#our-story" className="text-white hover:text-brit-gold font-medium text-sm relative group">
-              <span>OUR HISTORY</span>
+              <span>OUR STORY</span>
               <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-brit-gold transition-all duration-300 group-hover:w-full"></span>
             </Link>
             <Link
