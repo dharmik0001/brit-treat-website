@@ -26,8 +26,8 @@ export default function Header() {
             </Link>
           </div>
 
-          {/* Navigation - centered with larger font */}
-          <nav className="flex flex-wrap justify-center gap-x-2 lg:gap-x-4">
+          {/* Navigation - centered with larger font - hidden on mobile */}
+          <nav className="hidden md:flex flex-wrap justify-center gap-x-2 lg:gap-x-4">
             <Link
               href="/"
               className="relative group px-3 py-2 text-white hover:text-brit-gold font-bold uppercase text-base tracking-wide cursor-pointer transition-colors duration-300"
@@ -231,8 +231,8 @@ export default function Header() {
             </Link>
           </nav>
 
-          {/* Social Media Icons - aligned with navigation */}
-          <div className="flex items-center gap-3">
+          {/* Social Media Icons - aligned with navigation - hidden on mobile */}
+          <div className="hidden md:flex items-center gap-3">
             <Link
               href="https://www.instagram.com/brit_treat/"
               target="_blank"
