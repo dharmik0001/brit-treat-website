@@ -178,3 +178,59 @@ h6 {
   letter-spacing: 0.05em;
   text-transform: uppercase;
 }
+
+/* Find the .hero-image class and update it with these improved responsive styles */
+
+.hero-image {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  position: absolute !important;
+}
+
+/* Update the media queries for better responsiveness */
+@media (max-width: 768px) {
+  #hero {
+    min-height: 100svh; /* Use svh for better mobile viewport handling */
+  }
+
+  #hero .hero-image {
+    object-position: center center !important; /* Center the image on mobile */
+    height: 100% !important;
+    width: 100% !important;
+    transform: scale(1.2); /* Slightly scale up to avoid empty spaces */
+  }
+}
+
+/* Tablet viewport adjustments */
+@media (min-width: 769px) and (max-width: 1024px) {
+  #hero .hero-image {
+    object-position: center 35% !important;
+  }
+}
+
+/* Large desktop viewport */
+@media (min-width: 1025px) {
+  #hero .hero-image {
+    object-position: center 40% !important;
+  }
+}
+
+/* Fix for iOS Safari */
+@supports (-webkit-touch-callout: none) {
+  #hero {
+    height: -webkit-fill-available;
+    min-height: -webkit-fill-available;
+  }
+
+  #hero .hero-image {
+    height: 100% !important;
+  }
+}
+
+/* Fix for landscape orientation on mobile */
+@media (max-height: 500px) and (orientation: landscape) {
+  #hero {
+    min-height: 120vh;
+  }
+}

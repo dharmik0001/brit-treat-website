@@ -13,15 +13,22 @@ export default function Home() {
       </div>
 
       {/* Hero Section */}
-      <section id="hero" className="relative overflow-hidden min-h-screen flex items-center pt-24 scroll-mt-24">
+      <section
+        id="hero"
+        className="relative overflow-hidden min-h-[100svh] md:min-h-screen flex items-center pt-16 md:pt-24 scroll-mt-24"
+      >
         {/* Full-width background image */}
-        <div className="absolute inset-0">
+        <div className="absolute inset-0 w-full h-full">
           <Image
             src="/butter-cookies-hero.png"
             alt="Brit Treat Butter Cookies"
             fill
             priority
-            className="object-cover"
+            sizes="100vw"
+            className="object-cover object-center hero-image"
+            style={{
+              objectPosition: "center 40%", // Default position
+            }}
           />
         </div>
 
