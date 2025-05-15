@@ -1,6 +1,5 @@
 import Image from "next/image"
 import Link from "next/link"
-import { ChevronRight } from "lucide-react"
 import Header from "@/components/header"
 import MobileMenu from "@/components/mobile-menu"
 import Footer from "@/components/footer"
@@ -39,7 +38,11 @@ const productData = {
       longDescription:
         "Our Chocolate Chip Cookies combine a buttery cookie base with generous chunks of premium chocolate. Each bite delivers the perfect balance of sweetness and rich chocolate flavor.",
       price: "£9.99",
-      images: ["/chocolate-chip-cookies.png", "/chocolate-chip-cookies-stack.png", "/chocolate-chip-cookies-package.png"],
+      images: [
+        "/chocolate-chip-cookies.png",
+        "/chocolate-chip-cookies-stack.png",
+        "/chocolate-chip-cookies-package.png",
+      ],
       ingredients: "Wheat flour, butter, sugar, chocolate chips (15%), eggs, vanilla extract, baking soda, salt.",
       allergens: ["Contains: Wheat, Milk, Eggs", "May contain traces of nuts"],
       nutritionalInfo: {
@@ -100,27 +103,6 @@ export default function ProductDetailPage({ params }: { params: { slug: string }
       <Header />
       <div className="md:hidden">
         <MobileMenu />
-      </div>
-
-      {/* Breadcrumbs */}
-      <div className="bg-gray-100 py-3 mt-24">
-        <div className="container mx-auto px-4">
-          <div className="flex items-center text-sm text-gray-600">
-            <Link href="/" className="hover:text-[#F7941D]">
-              Home
-            </Link>
-            <ChevronRight className="h-4 w-4 mx-2" />
-            <Link href="/products" className="hover:text-[#F7941D]">
-              Products
-            </Link>
-            <ChevronRight className="h-4 w-4 mx-2" />
-            <Link href={`/products/${category}`} className="hover:text-[#F7941D]">
-              {product.category}
-            </Link>
-            <ChevronRight className="h-4 w-4 mx-2" />
-            <span className="text-[#F7941D]">{product.name}</span>
-          </div>
-        </div>
       </div>
 
       {/* Product Details */}

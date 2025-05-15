@@ -1,0 +1,24 @@
+# Allow all web crawlers
+User-agent: *
+Allow: /
+
+# Specify the correct paths
+Allow: /products/drinks/
+Allow: /products/peanut-butter/
+Allow: /products/coffee/
+
+# Disallow incorrect paths
+Disallow: /cookies/
+Disallow: /drinks/
+Disallow: /peanut-butter/
+Disallow: /coffee/
+
+# Disallow specific URLs as requested
+Disallow: /products
+Disallow: /products/sitemap
+Disallow: /products/cookies/
+Disallow: /products/cookies/assorted-cookies
+Disallow: /products/cookies/butter-cookies
+
+# Sitemap location
+Sitemap: https://www.brit-treat.co.uk/sitemap.xml

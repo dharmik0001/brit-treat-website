@@ -397,14 +397,14 @@ export default function Home() {
             {/* Cookies Collection */}
             <div id="cookies" className="text-center scroll-mt-32">
               <div className="mb-4 flex flex-col items-center">
-                <div className="relative w-64 h-64 mb-4">
+                <Link href="/products/cookies" className="relative w-64 h-64 mb-4 block cursor-pointer">
                   <Image
                     src="/butter-cookies-assortment.png"
                     alt="Cookies Collection"
                     fill
                     className="object-contain transition-transform duration-300 hover:scale-105"
                   />
-                </div>
+                </Link>
                 <Link href="/products/cookies" className="group">
                   <h3 className="text-2xl text-[#0A3281] font-bold mt-2 group-hover:text-[#FF6B6B] transition-colors">
                     Cookies Collection
@@ -419,14 +419,14 @@ export default function Home() {
             {/* Non-Alcoholic Drinks */}
             <div id="drinks" className="text-center scroll-mt-32">
               <div className="mb-4 flex flex-col items-center">
-                <div className="relative w-64 h-64 mb-4">
+                <Link href="/products/drinks" className="relative w-64 h-64 mb-4 block cursor-pointer">
                   <Image
                     src="/brit-treat-drinks.png"
                     alt="Non-Alcoholic Drinks"
                     fill
                     className="object-contain transition-transform duration-300 hover:scale-105"
                   />
-                </div>
+                </Link>
                 <Link href="/products/drinks" className="group">
                   <h3 className="text-2xl text-[#0A3281] font-bold mt-2 group-hover:text-[#FF6B6B] transition-colors">
                     Non-Alcoholic Drinks
@@ -441,14 +441,14 @@ export default function Home() {
             {/* Peanut Butter Range */}
             <div id="peanut-butter" className="text-center scroll-mt-32">
               <div className="mb-4 flex flex-col items-center">
-                <div className="relative w-64 h-64 mb-4">
+                <Link href="/products/peanut-butter" className="relative w-64 h-64 mb-4 block cursor-pointer">
                   <Image
                     src="/brit-treat-peanut-butter.png"
                     alt="Peanut Butter Range"
                     fill
                     className="object-contain transition-transform duration-300 hover:scale-105"
                   />
-                </div>
+                </Link>
                 <Link href="/products/peanut-butter" className="group">
                   <h3 className="text-2xl text-[#0A3281] font-bold mt-2 group-hover:text-[#FF6B6B] transition-colors">
                     Delicious Spreads
@@ -463,14 +463,14 @@ export default function Home() {
             {/* Coffee Collection */}
             <div id="coffee" className="text-center scroll-mt-32">
               <div className="mb-4 flex flex-col items-center">
-                <div className="relative w-64 h-64 mb-4">
+                <Link href="/products/coffee" className="relative w-64 h-64 mb-4 block cursor-pointer">
                   <Image
                     src="/brit-treat-coffee.png"
                     alt="Coffee Collection"
                     fill
                     className="object-contain transition-transform duration-300 hover:scale-105"
                   />
-                </div>
+                </Link>
                 <Link href="/products/coffee" className="group">
                   <h3 className="text-2xl text-[#0A3281] font-bold mt-2 group-hover:text-[#FF6B6B] transition-colors">
                     Coffee Collection

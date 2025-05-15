@@ -3,6 +3,21 @@ import Link from "next/link"
 import Header from "@/components/header"
 import MobileMenu from "@/components/mobile-menu"
 import Footer from "@/components/footer"
+import OtherCategories from "@/components/other-categories"
+
+export const metadata = {
+  title: "Delicious Spreads Collection | Brit Treat",
+  description: "100% natural peanut butter with no added sugar or salt, available in creamy and crunchy varieties.",
+  openGraph: {
+    title: "Delicious Spreads Collection | Brit Treat",
+    description: "100% natural peanut butter with no added sugar or salt, available in creamy and crunchy varieties.",
+    images: [{ url: "/brit-treat-peanut-butter-jars.jpeg" }],
+  },
+  // Add canonical URL
+  alternates: {
+    canonical: "https://www.brit-treat.co.uk/products/peanut_butter",
+  },
+}
 
 export default function PeanutButterPage() {
   return (
@@ -33,7 +48,7 @@ export default function PeanutButterPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div>
               <div
-                className="bg-[#f9f5eb] rounded-lg overflow-hidden"
+                className="rounded-lg overflow-hidden"
                 style={{ height: "500px", display: "flex", alignItems: "center", justifyContent: "center" }}
               >
                 <Image
@@ -54,7 +69,7 @@ export default function PeanutButterPage() {
 
             <div>
               <div
-                className="bg-[#f9f5eb] rounded-lg overflow-hidden"
+                className="rounded-lg overflow-hidden"
                 style={{ height: "500px", display: "flex", alignItems: "center", justifyContent: "center" }}
               >
                 <Image
@@ -75,6 +90,9 @@ export default function PeanutButterPage() {
           </div>
         </div>
       </section>
+
+      {/* Other Categories Section */}
+      <OtherCategories currentCategory="peanut-butter" />
 
       {/* Call to Action */}
       <section className="py-8 bg-[#0A3281]">

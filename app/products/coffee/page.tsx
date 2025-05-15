@@ -3,6 +3,22 @@ import Link from "next/link"
 import Header from "@/components/header"
 import MobileMenu from "@/components/mobile-menu"
 import Footer from "@/components/footer"
+import OtherCategories from "@/components/other-categories"
+
+export const metadata = {
+  title: "Premium Coffee Collection | Brit Treat",
+  description:
+    "Premium 100% instant coffee available in multiple sizes for your perfect cup. Ethically sourced beans with distinctive flavor.",
+  openGraph: {
+    title: "Premium Coffee Collection | Brit Treat",
+    description: "Premium 100% instant coffee available in multiple sizes for your perfect cup.",
+    images: [{ url: "/brit-treat-coffee-jars.jpeg" }],
+  },
+  // Add canonical URL
+  alternates: {
+    canonical: "https://www.brit-treat.co.uk/products/coffee",
+  },
+}
 
 export default function CoffeePage() {
   return (
@@ -33,7 +49,7 @@ export default function CoffeePage() {
           <div className="grid grid-cols-1 gap-8">
             <div>
               <div
-                className="bg-[#f9f5eb] rounded-lg overflow-hidden mx-auto"
+                className="rounded-lg overflow-hidden mx-auto"
                 style={{
                   height: "500px",
                   display: "flex",
@@ -61,6 +77,9 @@ export default function CoffeePage() {
           </div>
         </div>
       </section>
+
+      {/* Other Categories Section */}
+      <OtherCategories currentCategory="coffee" />
 
       {/* Call to Action */}
       <section className="py-16 bg-[#0A3281]">

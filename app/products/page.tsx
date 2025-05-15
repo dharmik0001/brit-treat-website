@@ -4,6 +4,23 @@ import Header from "@/components/header"
 import MobileMenu from "@/components/mobile-menu"
 import Footer from "@/components/footer"
 import ProductCategoryNav from "@/components/product-category-nav"
+import { ArrowRight } from "lucide-react"
+
+export const metadata = {
+  title: "Premium British Products | Brit Treat",
+  description:
+    "Discover our range of premium British treats, from delicious cookies to refreshing drinks and our signature peanut butter range.",
+  openGraph: {
+    title: "Premium British Products | Brit Treat",
+    description:
+      "Discover our range of premium British treats, from delicious cookies to refreshing drinks and our signature peanut butter range.",
+    images: [{ url: "/brit-treat-logo.png" }],
+  },
+  // Add canonical URL
+  alternates: {
+    canonical: "https://www.brit-treat.co.uk/products",
+  },
+}
 
 export default function ProductsPage() {
   return (
@@ -26,6 +43,19 @@ export default function ProductsPage() {
           </p>
         </div>
       </section>
+
+      {/* Sitemap Link */}
+      <div className="bg-white py-4 border-b border-gray-200">
+        <div className="container mx-auto px-4 flex justify-end">
+          <Link
+            href="/products/sitemap"
+            className="text-[#0A3281] hover:text-[#F7941D] flex items-center text-sm font-medium"
+          >
+            View All Products
+            <ArrowRight className="ml-1 h-4 w-4" />
+          </Link>
+        </div>
+      </div>
 
       {/* Product Category Navigation */}
       <ProductCategoryNav />
