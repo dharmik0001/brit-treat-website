@@ -3,8 +3,42 @@ import Link from "next/link"
 import Header from "@/components/header"
 import MobileMenu from "@/components/mobile-menu"
 import Footer from "@/components/footer"
+import MobileSwipeGallery from "@/components/mobile-swipe-gallery"
 
 export default function Home() {
+  // Product categories data for swipe gallery
+  const productCategories = [
+    {
+      imageSrc: "/butter-cookies-assortment.png",
+      imageAlt: "Cookies Collection",
+      title: "Cookies Collection",
+      description: "Delicious premium cookies crafted with traditional British recipes and the finest ingredients.",
+      link: "/products/cookies",
+    },
+    {
+      imageSrc: "/brit-treat-drinks.png",
+      imageAlt: "Non-Alcoholic Drinks",
+      title: "Non-Alcoholic Drinks",
+      description: "Refreshing premium beverages for all occasions, perfect for celebrations and special moments.",
+      link: "/products/drinks",
+    },
+    {
+      imageSrc: "/brit-treat-peanut-butter.png",
+      imageAlt: "Peanut Butter Range",
+      title: "Delicious Spreads",
+      description: "Premium spreads made with high-quality ingredients, available in various delicious flavors.",
+      link: "/products/peanut-butter",
+    },
+    {
+      imageSrc: "/brit-treat-coffee.png",
+      imageAlt: "Coffee Collection",
+      title: "Coffee Collection",
+      description:
+        "Premium coffee blends with distinctive British character, perfect for starting your day or afternoon tea.",
+      link: "/products/coffee",
+    },
+  ]
+
   return (
     <div className="min-h-screen bg-white">
       <Header />
@@ -392,8 +426,13 @@ export default function Home() {
         <div className="container mx-auto px-4">
           <h2 className="text-4xl text-center text-[#0A3281] mb-12 font-bold tracking-wider">OUR PRODUCTS</h2>
 
-          {/* Product Categories */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16 items-start">
+          {/* Mobile Swipe Gallery */}
+          <div className="md:hidden mb-8">
+            <MobileSwipeGallery items={productCategories} />
+          </div>
+
+          {/* Desktop Grid Layout */}
+          <div className="hidden md:grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16 items-start">
             {/* Cookies Collection */}
             <div id="cookies" className="text-center scroll-mt-32">
               <div className="mb-4 flex flex-col items-center">

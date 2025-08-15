@@ -1,26 +1,41 @@
+"use client"
+
+import { useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import Header from "@/components/header"
 import MobileMenu from "@/components/mobile-menu"
 import Footer from "@/components/footer"
+import MobileSwipeGallery from "@/components/mobile-swipe-gallery"
 import OtherCategories from "@/components/other-categories"
 
-export const metadata = {
-  title: "Premium Coffee Collection | Brit Treat",
-  description:
-    "Premium 100% instant coffee available in multiple sizes for your perfect cup. Ethically sourced beans with distinctive flavor.",
-  openGraph: {
-    title: "Premium Coffee Collection | Brit Treat",
-    description: "Premium 100% instant coffee available in multiple sizes for your perfect cup.",
-    images: [{ url: "/brit-treat-coffee-jars.jpeg" }],
-  },
-  // Add canonical URL
-  alternates: {
-    canonical: "https://www.brit-treat.co.uk/products/coffee",
-  },
-}
-
 export default function CoffeePage() {
+  const [clickedProduct, setClickedProduct] = useState<string | null>(null)
+
+  const handleProductClick = (productId: string) => {
+    setClickedProduct(productId)
+    setTimeout(() => setClickedProduct(null), 200)
+  }
+
+  // Coffee products data
+  const coffeeProducts = [
+    {
+      id: "premium-coffee-jars",
+      imageSrc: "/brit-treat-coffee-jars.jpeg",
+      imageAlt: "Premium Coffee Jars",
+      title: "Premium Coffee Jars",
+      description: "Rich, aromatic coffee blends in convenient jar packaging for the perfect cup every time.",
+    },
+  ]
+
+  // Mobile gallery items
+  const coffeeGalleryItems = coffeeProducts.map((product) => ({
+    imageSrc: product.imageSrc,
+    imageAlt: product.imageAlt,
+    title: product.title,
+    description: product.description,
+  }))
+
   return (
     <div className="min-h-screen bg-white">
       <Header />
@@ -29,75 +44,93 @@ export default function CoffeePage() {
       </div>
 
       {/* Hero Section */}
-      <section className="relative overflow-hidden">
-        <div className="absolute inset-0 bg-[#6F4E37]"></div>
-        <div className="relative container mx-auto px-4 py-12 md:py-20 flex flex-col items-center z-10 mt-16">
-          <h1 className="text-5xl md:text-6xl font-bold text-white tracking-wider mb-6 drop-shadow-lg text-center hero-text">
-            COFFEE COLLECTION
-          </h1>
-          <p className="text-white text-xl md:text-2xl mb-8 max-w-2xl text-center drop-shadow-md">
-            Premium 100% instant coffee available in multiple sizes for your perfect cup
-          </p>
-        </div>
-      </section>
-
-      {/* Featured Product Images */}
-      <section className="py-12 bg-[#f9f5eb]">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl text-center text-[#0A3281] mb-8 font-bold">Our Coffee Range</h2>
-
-          <div className="grid grid-cols-1 gap-8">
-            <div>
-              <div
-                className="rounded-lg overflow-hidden mx-auto"
-                style={{
-                  height: "500px",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  maxWidth: "600px",
-                }}
-              >
-                <Image
-                  src="/brit-treat-coffee-jars.jpeg"
-                  alt="Brit Treat Coffee Collection"
-                  width={800}
-                  height={1000}
-                  style={{ maxHeight: "100%", width: "auto", maxWidth: "100%" }}
-                />
-              </div>
-              <div className="mt-4 text-center">
-                <h3 className="text-xl font-bold text-[#0A3281]">100% Instant Coffee</h3>
-                <p className="text-gray-900 mt-2 max-w-2xl mx-auto">
-                  Our premium instant coffee is available in three convenient sizes: 50g, 100g, and 200g. Made from
-                  carefully selected coffee beans for a rich, aromatic experience with every cup.
-                </p>
-              </div>
-            </div>
+      <section className="relative py-16 md:py-24 bg-gradient-to-br from-[#0A3281] to-[#1E4498] overflow-hidden">
+        <div className="absolute inset-0 bg-black/10"></div>
+        <div className="relative container mx-auto px-4 text-center">
+          <div className="max-w-4xl mx-auto">
+            <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 tracking-wide">OUR COFFEE RANGE</h1>
+            <p className="text-xl md:text-2xl text-white/90 mb-8 leading-relaxed">
+              Premium coffee blends with distinctive British character for the perfect cup
+            </p>
+            <div className="w-24 h-1 bg-[#FF6B6B] mx-auto rounded-full"></div>
           </div>
         </div>
       </section>
 
-      {/* Other Categories Section */}
-      <OtherCategories currentCategory="coffee" />
+      {/* Breadcrumb Navigation */}
+      <nav className="bg-gray-50 py-4">
+        <div className="container mx-auto px-4">
+          <div className="flex items-center space-x-2 text-sm">
+            <Link href="/" className="text-[#0A3281] hover:text-[#FF6B6B] transition-colors">
+              Home
+            </Link>
+            <span className="text-gray-400">/</span>
+            <Link href="/products" className="text-[#0A3281] hover:text-[#FF6B6B] transition-colors">
+              Products
+            </Link>
+            <span className="text-gray-400">/</span>
+            <span className="text-gray-600">Coffee</span>
+          </div>
+        </div>
+      </nav>
 
-      {/* Call to Action */}
-      <section className="py-16 bg-[#0A3281]">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl text-white mb-6 font-bold tracking-wider">READY TO ORDER?</h2>
-          <p className="text-white text-xl mb-8 max-w-2xl mx-auto">
-            Our premium coffee is available on Amazon UK. Order now for fast delivery!
-          </p>
-          <Link
-            href="https://www.amazon.co.uk/BRIT-TREAT-Luxury-Cookies-Selection/dp/B0F3XZWBR5/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="bg-[#FF6B6B] text-white px-8 py-3 uppercase text-lg tracking-wider hover:bg-[#FF5252] transition-colors font-bold inline-block"
+      {/* Back Button */}
+      <div className="container mx-auto px-4 py-6">
+        <Link
+          href="/products"
+          className="inline-flex items-center text-[#0A3281] hover:text-[#FF6B6B] transition-colors group"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-5 w-5 mr-2 transition-transform group-hover:-translate-x-1"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
           >
-            Shop Now on Amazon
-          </Link>
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+          </svg>
+          Back to All Products
+        </Link>
+      </div>
+
+      {/* Products Section */}
+      <section className="py-16">
+        <div className="container mx-auto px-4">
+          {/* Mobile Swipe Gallery */}
+          <div className="md:hidden">
+            <MobileSwipeGallery items={coffeeGalleryItems} />
+          </div>
+
+          {/* Desktop Grid */}
+          <div className="hidden md:grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {coffeeProducts.map((product) => (
+              <div
+                key={product.id}
+                className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 cursor-pointer"
+                onClick={() => handleProductClick(product.id)}
+              >
+                <div className="relative h-80 overflow-hidden">
+                  <Image
+                    src={product.imageSrc || "/placeholder.svg"}
+                    alt={product.imageAlt}
+                    fill
+                    className={`object-contain transition-all duration-200 ${
+                      clickedProduct === product.id ? "scale-90" : "hover:scale-105"
+                    }`}
+                  />
+                </div>
+                <div className="p-6">
+                  <h3 className="text-xl font-bold text-[#0A3281] mb-3">{product.title}</h3>
+                  <p className="text-gray-700 leading-relaxed">{product.description}</p>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
+
+      {/* Other Categories */}
+      <OtherCategories currentCategory="coffee" />
 
       <Footer />
     </div>

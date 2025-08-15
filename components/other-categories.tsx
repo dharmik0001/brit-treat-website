@@ -55,7 +55,7 @@ export default function OtherCategories({ currentCategory }: OtherCategoriesProp
   }))
 
   return (
-    <section className="py-6 md:py-8 bg-gray-50">
+    <section className="py-6 md:py-8 bg-white"> {/* Changed background to white */}
       <div className="container mx-auto px-4">
         <h2 className="text-2xl md:text-3xl text-center text-[#0A3281] mb-4 md:mb-6 font-bold">
           Explore Our Other Products
@@ -72,21 +72,31 @@ export default function OtherCategories({ currentCategory }: OtherCategoriesProp
             <Link
               key={category.id}
               href={`/products/${category.id}`}
-              className="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 group h-full"
+              className="group bg-transparent rounded-lg overflow-hidden transition-all duration-300 hover:shadow-lg" /* Matched card styling */
             >
-              <div className="aspect-square relative">
+              <div
+                className="bg-transparent rounded-lg overflow-hidden" /* Matched image container styling */
+                style={{
+                  height: "350px",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
                 <Image
                   src={category.image || "/placeholder.svg"}
                   alt={category.name}
-                  fill
-                  className="object-contain p-4 transition-transform duration-300 group-hover:scale-105"
+                  width={400} /* Matched image width */
+                  height={400} /* Matched image height */
+                  style={{ maxHeight: "90%", width: "auto", maxWidth: "90%" }} /* Matched image style */
+                  className="object-contain transition-transform duration-300 group-hover:scale-105" /* Matched image hover effect */
                 />
               </div>
               <div className="p-4 text-center">
-                <h3 className="text-xl font-bold text-[#0A3281] mb-2 group-hover:text-[#FF6B6B] transition-colors">
+                <h3 className="text-lg font-bold text-[#0A3281] mb-2"> {/* Matched heading size and color */}
                   {category.name}
                 </h3>
-                <p className="text-gray-700">{category.description}</p>
+                <p className="text-gray-700 text-sm">{category.description}</p> {/* Matched description size and color */}
               </div>
             </Link>
           ))}
