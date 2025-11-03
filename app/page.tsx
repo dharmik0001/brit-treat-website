@@ -4,6 +4,7 @@ import Header from "@/components/header"
 import MobileMenu from "@/components/mobile-menu"
 import Footer from "@/components/footer"
 import MobileSwipeGallery from "@/components/mobile-swipe-gallery"
+import HeroProductCarousel from "@/components/hero-product-carousel"
 
 export default function Home() {
   // Product categories data for swipe gallery
@@ -39,6 +40,56 @@ export default function Home() {
     },
   ]
 
+  // Updated hero carousel products data with the new images
+  const heroCarouselProducts = [
+    {
+      imageSrc: "/hero-carousel-assorted-cookies.png",
+      imageAlt: "Brit Treat Assorted Cookies Box",
+      tagline: "Assorted Cookie Collection",
+      description: "Taste the richness of tradition with our finest butter cookies selection",
+      price: "£15",
+    },
+    {
+      imageSrc: "/hero-carousel-red-butter-cookies.png",
+      imageAlt: "Red Brit Treat Butter Cookies Tin",
+      tagline: "Premium Red Tin Collection",
+      description: "Classic red tin filled with traditional British butter cookies",
+      price: "£11",
+    },
+    {
+      imageSrc: "/hero-carousel-chocochip-cookies.png",
+      imageAlt: "Brit Treat Chocolate Chip Cookies Box",
+      tagline: "Irresistible Chocolate Indulgence",
+      description:
+        "Premium chocolate chip cookies in beautiful London-themed packaging, loaded with rich chocolate chips for the perfect treat.",
+      price: "£13",
+    },
+    {
+      imageSrc: "/hero-carousel-mini-cookies.png",
+      imageAlt: "Brit Treat Mini Chocolate Chip Cookies",
+      tagline: "Perfect Bite-Sized Treats",
+      description:
+        "Convenient mini chocolate chip cookies in resealable containers, perfect for on-the-go snacking and sharing.",
+      price: "£8",
+    },
+    {
+      imageSrc: "/hero-carousel-triple-tins.png",
+      imageAlt: "Three Brit Treat Butter Cookie Tins",
+      tagline: "Premium Tin Collection",
+      description:
+        "Exquisite butter cookies in three elegant colors - white, red, and gold tins, perfect for gifting and collecting.",
+      price: "£14",
+    },
+    {
+      imageSrc: "/hero-carousel-dual-blue-tins.png",
+      imageAlt: "Blue Brit Treat Butter Cookie Tins",
+      tagline: "Classic British Heritage",
+      description:
+        "Premium butter cookies in elegant blue tins featuring iconic British Guard and Big Ben imagery. Available in two convenient sizes.",
+      price: "£12",
+    },
+  ]
+
   return (
     <div className="min-h-screen bg-white">
       <Header />
@@ -51,25 +102,21 @@ export default function Home() {
         id="hero"
         className="relative overflow-hidden min-h-[100svh] md:min-h-screen flex items-center pt-16 md:pt-24 scroll-mt-24"
       >
-        {/* Full-width background image */}
+        {/* Full-width background with starry night image */}
         <div className="absolute inset-0 w-full h-full">
-          <Image
-            src="/butter-cookies-hero.png"
-            alt="Brit Treat Butter Cookies"
-            fill
-            priority
-            sizes="100vw"
-            className="object-cover object-center hero-image"
-            style={{
-              objectPosition: "center 40%", // Default position
-            }}
-          />
+          <Image src="/hero-bg-stars.png" alt="Hero Background" fill className="object-cover" priority />
         </div>
 
-        <div className="relative container mx-auto px-4 py-24 md:py-32 flex flex-col md:flex-row-reverse items-center z-10">
-          <div className="md:w-1/2 text-center md:text-right mb-8 md:mb-0 md:pl-8">
+        <div className="relative container mx-auto px-4 py-24 md:py-32 flex flex-col md:flex-row items-center z-10">
+          {/* Left Side - Product Carousel (matching the image layout) */}
+          <div className="md:w-1/2 flex justify-center md:justify-start mb-8 md:mb-0 md:pr-8">
+            <HeroProductCarousel products={heroCarouselProducts} autoPlay={true} autoPlayInterval={2000} />
+          </div>
+
+          {/* Right Side - Text and Button (matching the image) */}
+          <div className="md:w-1/2 text-center md:text-right md:pl-8">
             <h1
-              className="text-5xl md:text-7xl font-extrabold text-white tracking-wider mb-6 drop-shadow-lg uppercase hero-text flex flex-col items-center md:items-end"
+              className="text-4xl md:text-7xl font-extrabold text-white tracking-wider mb-6 drop-shadow-lg uppercase hero-text flex flex-col items-center md:items-end"
               style={{ letterSpacing: "0.05em" }}
             >
               <span>TASTE</span>
@@ -77,7 +124,7 @@ export default function Home() {
               <span>OF TRADITION</span>
             </h1>
             <p
-              className="text-white text-2xl md:text-3xl mb-8 drop-shadow-md font-bold uppercase hero-text text-center md:text-right"
+              className="text-white text-xl md:text-3xl mb-8 drop-shadow-md font-bold uppercase hero-text text-center md:text-right"
               style={{ letterSpacing: "0.03em", marginLeft: "auto", marginRight: "auto", maxWidth: "100%" }}
             >
               FINEST BUTTER COOKIES SELECTION
@@ -86,9 +133,9 @@ export default function Home() {
               href="https://www.amazon.co.uk/BRIT-TREAT-Luxury-Cookies-Selection/dp/B0F3XZWBR5/"
               target="_blank"
               rel="noopener noreferrer"
-              className="group relative overflow-hidden bg-gradient-to-r from-[#FF6B6B] to-[#FF5252] text-white px-8 py-3 uppercase text-lg tracking-wider font-bold inline-flex items-center gap-2 rounded-md shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 hover:scale-105"
+              className="group relative overflow-hidden bg-gradient-to-r from-[#FF6B6B] to-[#FF5252] text-white px-8 py-4 uppercase text-lg tracking-wider font-bold inline-flex items-center gap-2 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 hover:scale-105"
             >
-              <span className="relative z-10">Shop Now on Amazon</span>
+              <span className="relative z-10">SHOP NOW ON AMAZON</span>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1"
@@ -104,12 +151,8 @@ export default function Home() {
                   transform="rotate(90, 12, 12)"
                 />
               </svg>
-              <span className="absolute inset-0 bg-white/20 scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300"></span>
+              <span className="absolute inset-0 bg-white/20 scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300 rounded-lg"></span>
             </Link>
-          </div>
-          <div className="md:w-1/2 flex justify-center md:justify-start">
-            {/* This space is intentionally left empty to balance the layout */}
-            {/* The cookie tin is already visible in the background image */}
           </div>
         </div>
       </section>
@@ -436,12 +479,13 @@ export default function Home() {
             {/* Cookies Collection */}
             <div id="cookies" className="text-center scroll-mt-32">
               <div className="mb-4 flex flex-col items-center">
-                <Link href="/products/cookies" className="relative w-64 h-64 mb-4 block cursor-pointer">
+                <Link href="/products/cookies" className="relative w-64 h-64 mb-4 block group">
                   <Image
                     src="/butter-cookies-assortment.png"
                     alt="Cookies Collection"
                     fill
-                    className="object-contain transition-transform duration-300 hover:scale-105"
+                    className="object-contain transition-transform duration-300 group-hover:scale-105"
+                    priority
                   />
                 </Link>
                 <Link href="/products/cookies" className="group">
@@ -453,17 +497,26 @@ export default function Home() {
               <p className="text-gray-900 mb-4 text-lg">
                 Delicious premium cookies crafted with traditional British recipes and the finest ingredients.
               </p>
+              <Link
+                href="/products/cookies"
+                className="text-[#FF6B6B] font-medium hover:underline inline-flex items-center"
+              >
+                View Collection
+                <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </Link>
             </div>
 
             {/* Non-Alcoholic Drinks */}
             <div id="drinks" className="text-center scroll-mt-32">
               <div className="mb-4 flex flex-col items-center">
-                <Link href="/products/drinks" className="relative w-64 h-64 mb-4 block cursor-pointer">
+                <Link href="/products/drinks" className="relative w-64 h-64 mb-4 block group">
                   <Image
                     src="/brit-treat-drinks.png"
                     alt="Non-Alcoholic Drinks"
                     fill
-                    className="object-contain transition-transform duration-300 hover:scale-105"
+                    className="object-contain transition-transform duration-300 group-hover:scale-105"
                   />
                 </Link>
                 <Link href="/products/drinks" className="group">
@@ -475,17 +528,26 @@ export default function Home() {
               <p className="text-gray-900 mb-4 text-lg">
                 Refreshing premium beverages for all occasions, perfect for celebrations and special moments.
               </p>
+              <Link
+                href="/products/drinks"
+                className="text-[#FF6B6B] font-medium hover:underline inline-flex items-center"
+              >
+                View Collection
+                <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </Link>
             </div>
 
             {/* Peanut Butter Range */}
             <div id="peanut-butter" className="text-center scroll-mt-32">
               <div className="mb-4 flex flex-col items-center">
-                <Link href="/products/peanut-butter" className="relative w-64 h-64 mb-4 block cursor-pointer">
+                <Link href="/products/peanut-butter" className="relative w-64 h-64 mb-4 block group">
                   <Image
                     src="/brit-treat-peanut-butter.png"
                     alt="Peanut Butter Range"
                     fill
-                    className="object-contain transition-transform duration-300 hover:scale-105"
+                    className="object-contain transition-transform duration-300 group-hover:scale-105"
                   />
                 </Link>
                 <Link href="/products/peanut-butter" className="group">
@@ -497,17 +559,26 @@ export default function Home() {
               <p className="text-gray-900 mb-4 text-lg">
                 Premium spreads made with high-quality ingredients, available in various delicious flavors.
               </p>
+              <Link
+                href="/products/peanut-butter"
+                className="text-[#FF6B6B] font-medium hover:underline inline-flex items-center"
+              >
+                View Collection
+                <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </Link>
             </div>
 
             {/* Coffee Collection */}
             <div id="coffee" className="text-center scroll-mt-32">
               <div className="mb-4 flex flex-col items-center">
-                <Link href="/products/coffee" className="relative w-64 h-64 mb-4 block cursor-pointer">
+                <Link href="/products/coffee" className="relative w-64 h-64 mb-4 block group">
                   <Image
                     src="/brit-treat-coffee.png"
                     alt="Coffee Collection"
                     fill
-                    className="object-contain transition-transform duration-300 hover:scale-105"
+                    className="object-contain transition-transform duration-300 group-hover:scale-105"
                   />
                 </Link>
                 <Link href="/products/coffee" className="group">
@@ -520,6 +591,15 @@ export default function Home() {
                 Premium coffee blends with distinctive British character, perfect for starting your day or afternoon
                 tea.
               </p>
+              <Link
+                href="/products/coffee"
+                className="text-[#FF6B6B] font-medium hover:underline inline-flex items-center"
+              >
+                View Collection
+                <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </Link>
             </div>
           </div>
 

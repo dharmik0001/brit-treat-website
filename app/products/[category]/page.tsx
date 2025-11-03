@@ -3,6 +3,7 @@ import Link from "next/link"
 import Header from "@/components/header"
 import MobileMenu from "@/components/mobile-menu"
 import Footer from "@/components/footer"
+import ProductMobileSwipe from "@/components/product-mobile-swipe"
 
 export default function ProductCategoryPage({ params }: { params: { category: string } }) {
   // Map of category IDs to their display names, background colors, and content
@@ -123,29 +124,35 @@ export default function ProductCategoryPage({ params }: { params: { category: st
       {/* Featured Product Images */}
       <section className="py-12 bg-[#f9f5eb]">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl text-center text-[#0A3281] mb-8 font-bold">Our {category.name}</h2>
+          {/* Mobile Swipe Gallery */}
+          <ProductMobileSwipe images={category.images} categoryName={category.name} />
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {category.images.map((image, index) => (
-              <div key={index}>
-                <div
-                  className="bg-[#f9f5eb] rounded-lg overflow-hidden"
-                  style={{ height: "500px", display: "flex", alignItems: "center", justifyContent: "center" }}
-                >
-                  <Image
-                    src={image.src || "/placeholder.svg"}
-                    alt={image.alt}
-                    width={600}
-                    height={800}
-                    style={{ maxHeight: "100%", width: "auto", maxWidth: "100%" }}
-                  />
+          {/* Desktop Grid View */}
+          <div className="hidden md:block">
+            <h2 className="text-3xl text-center text-[#0A3281] mb-8 font-bold">Our {category.name}</h2>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {category.images.map((image, index) => (
+                <div key={index}>
+                  <div
+                    className="bg-[#f9f5eb] rounded-lg overflow-hidden"
+                    style={{ height: "500px", display: "flex", alignItems: "center", justifyContent: "center" }}
+                  >
+                    <Image
+                      src={image.src || "/placeholder.svg"}
+                      alt={image.alt}
+                      width={600}
+                      height={800}
+                      style={{ maxHeight: "100%", width: "auto", maxWidth: "100%" }}
+                    />
+                  </div>
+                  <div className="mt-4 text-center">
+                    <h3 className="text-xl font-bold text-[#0A3281]">{image.alt}</h3>
+                    <p className="text-gray-700 mt-2 line-clamp-2">{image.description}</p>
+                  </div>
                 </div>
-                <div className="mt-4 text-center">
-                  <h3 className="text-xl font-bold text-[#0A3281]">{image.alt}</h3>
-                  <p className="text-gray-700 mt-2 line-clamp-2">{image.description}</p>
-                </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       </section>

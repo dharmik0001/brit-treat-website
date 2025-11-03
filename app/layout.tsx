@@ -1,6 +1,7 @@
 import type React from "react"
 import type { Metadata } from "next"
 import "./globals.css"
+import ScrollToSection from "@/components/scroll-to-section"
 
 export const metadata: Metadata = {
   title: "Brit Treat",
@@ -24,7 +25,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <ScrollToSection />
+        {children}
+      </body>
     </html>
   )
 }

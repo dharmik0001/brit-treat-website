@@ -1,14 +1,14 @@
 import Image from "next/image"
 import Link from "next/link"
-import { Instagram, Facebook, Linkedin, ChevronDown, PhoneIcon as WhatsApp } from "lucide-react"
+import { Instagram, Facebook, Linkedin, ChevronDown, Phone } from "lucide-react"
+import MobileMenu from "./mobile-menu"
 
 export default function Header() {
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-gradient-to-r from-[#0A3281] to-[#1E4498] shadow-lg h-20 flex flex-col justify-center overflow-visible">
-      {/* Decorative top border */}
-      <div className="h-0.5 w-full bg-gradient-to-r from-[#D4AF37] via-[#E9C34E] to-[#D4AF37] absolute top-0"></div>
+    <header className="fixed top-0 left-0 right-0 z-50 bg-[#0A3281]/95 backdrop-blur-md shadow-lg h-20 flex flex-col justify-center overflow-visible transition-all duration-300">
+      {/* Decorative top border - gold to match stars */}
+      <div className="h-0.5 w-full bg-gradient-to-r from-transparent via-[#D4AF37] to-transparent absolute top-0"></div>
 
-      {/* Change the container to have normal flow and proper spacing */}
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between">
           {/* Logo - aligned with navigation */}
@@ -20,7 +20,8 @@ export default function Header() {
                   alt="Brit Treat"
                   width={130}
                   height={52}
-                  className="h-auto brightness-125 contrast-125 drop-shadow-md"
+                  className="h-auto brightness-125 contrast-125 drop-shadow-lg"
+                  priority
                 />
               </div>
             </Link>
@@ -30,37 +31,37 @@ export default function Header() {
           <nav className="hidden md:flex flex-wrap justify-center gap-x-2 lg:gap-x-4">
             <Link
               href="/"
-              className="relative group px-3 py-2 text-white hover:text-brit-gold font-bold uppercase text-base tracking-wide cursor-pointer transition-colors duration-300"
+              className="relative group px-3 py-2 text-white hover:text-[#D4AF37] font-bold uppercase text-base tracking-wide cursor-pointer transition-colors duration-300"
             >
-              <span>Home</span>
-              <span className="absolute bottom-0 left-0 w-full h-0.5 bg-brit-gold transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
+              <span className="drop-shadow-md">Home</span>
+              <span className="absolute bottom-0 left-0 w-full h-0.5 bg-[#D4AF37] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left shadow-lg shadow-[#D4AF37]/50"></span>
             </Link>
             <Link
               href="/#our-story"
-              className="relative group px-3 py-2 text-white hover:text-brit-gold font-bold uppercase text-base tracking-wide cursor-pointer transition-colors duration-300"
+              className="relative group px-3 py-2 text-white hover:text-[#D4AF37] font-bold uppercase text-base tracking-wide cursor-pointer transition-colors duration-300"
             >
-              <span>Our Story</span>
-              <span className="absolute bottom-0 left-0 w-full h-0.5 bg-brit-gold transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
+              <span className="drop-shadow-md">Our Story</span>
+              <span className="absolute bottom-0 left-0 w-full h-0.5 bg-[#D4AF37] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left shadow-lg shadow-[#D4AF37]/50"></span>
             </Link>
             <div className="relative group">
               <Link
                 href="/#products"
-                className="flex items-center px-3 py-2 text-white hover:text-brit-gold font-bold uppercase text-base tracking-wide cursor-pointer transition-colors duration-300"
+                className="flex items-center px-3 py-2 text-white hover:text-[#D4AF37] font-bold uppercase text-base tracking-wide cursor-pointer transition-colors duration-300"
               >
-                <span>Our Products</span>
-                <ChevronDown className="ml-1 h-5 w-5 transition-transform duration-300 group-hover:rotate-180" />
+                <span className="drop-shadow-md">Our Products</span>
+                <ChevronDown className="ml-1 h-5 w-5 transition-transform duration-300 group-hover:rotate-180 drop-shadow-md" />
               </Link>
-              <div className="absolute left-0 mt-1 w-72 rounded-lg shadow-xl bg-white/95 backdrop-blur-sm transform scale-y-0 opacity-0 group-hover:scale-y-100 group-hover:opacity-100 origin-top transition-all duration-300 z-50 overflow-hidden border border-gray-100">
-                <div className="py-2 rounded-lg bg-white">
-                  <div className="px-4 py-2 bg-gradient-to-r from-[#0A3281]/10 to-transparent border-b border-gray-100">
+              <div className="absolute left-0 mt-1 w-72 rounded-lg shadow-xl bg-white/98 backdrop-blur-md transform scale-y-0 opacity-0 group-hover:scale-y-100 group-hover:opacity-100 origin-top transition-all duration-300 z-50 overflow-hidden border border-[#D4AF37]/20">
+                <div className="py-2 rounded-lg bg-white/95 backdrop-blur-sm">
+                  <div className="px-4 py-2 bg-gradient-to-r from-[#0A3281]/10 to-transparent border-b border-[#D4AF37]/20">
                     <span className="text-[#0A3281] font-semibold text-sm">Our Collections</span>
                   </div>
 
                   <Link
                     href="/products/cookies"
-                    className="flex items-center px-4 py-3 text-gray-700 hover:bg-gray-50 hover:text-[#0A3281] transition-colors group/item border-b border-gray-50"
+                    className="flex items-center px-4 py-3 text-gray-700 hover:bg-[#0A3281]/5 hover:text-[#0A3281] transition-colors group/item border-b border-gray-50"
                   >
-                    <div className="w-10 h-10 rounded-full bg-[#F8F9FA] flex items-center justify-center mr-3 group-hover/item:bg-[#0A3281]/5 transition-colors">
+                    <div className="w-10 h-10 rounded-full bg-[#F8F9FA] flex items-center justify-center mr-3 group-hover/item:bg-[#D4AF37]/10 transition-colors">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 24 24"
@@ -100,9 +101,9 @@ export default function Header() {
 
                   <Link
                     href="/products/drinks"
-                    className="flex items-center px-4 py-3 text-gray-700 hover:bg-gray-50 hover:text-[#0A3281] transition-colors group/item border-b border-gray-50"
+                    className="flex items-center px-4 py-3 text-gray-700 hover:bg-[#0A3281]/5 hover:text-[#0A3281] transition-colors group/item border-b border-gray-50"
                   >
-                    <div className="w-10 h-10 rounded-full bg-[#F8F9FA] flex items-center justify-center mr-3 group-hover/item:bg-[#0A3281]/5 transition-colors">
+                    <div className="w-10 h-10 rounded-full bg-[#F8F9FA] flex items-center justify-center mr-3 group-hover/item:bg-[#D4AF37]/10 transition-colors">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 24 24"
@@ -139,9 +140,9 @@ export default function Header() {
 
                   <Link
                     href="/products/peanut-butter"
-                    className="flex items-center px-4 py-3 text-gray-700 hover:bg-gray-50 hover:text-[#0A3281] transition-colors group/item border-b border-gray-50"
+                    className="flex items-center px-4 py-3 text-gray-700 hover:bg-[#0A3281]/5 hover:text-[#0A3281] transition-colors group/item border-b border-gray-50"
                   >
-                    <div className="w-10 h-10 rounded-full bg-[#F8F9FA] flex items-center justify-center mr-3 group-hover/item:bg-[#0A3281]/5 transition-colors">
+                    <div className="w-10 h-10 rounded-full bg-[#F8F9FA] flex items-center justify-center mr-3 group-hover/item:bg-[#D4AF37]/10 transition-colors">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 24 24"
@@ -179,9 +180,9 @@ export default function Header() {
 
                   <Link
                     href="/products/coffee"
-                    className="flex items-center px-4 py-3 text-gray-700 hover:bg-gray-50 hover:text-[#0A3281] transition-colors group/item"
+                    className="flex items-center px-4 py-3 text-gray-700 hover:bg-[#0A3281]/5 hover:text-[#0A3281] transition-colors group/item"
                   >
-                    <div className="w-10 h-10 rounded-full bg-[#F8F9FA] flex items-center justify-center mr-3 group-hover/item:bg-[#0A3281]/5 transition-colors">
+                    <div className="w-10 h-10 rounded-full bg-[#F8F9FA] flex items-center justify-center mr-3 group-hover/item:bg-[#D4AF37]/10 transition-colors">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 24 24"
@@ -220,14 +221,21 @@ export default function Header() {
                   </Link>
                 </div>
               </div>
-              <span className="absolute bottom-0 left-0 w-full h-0.5 bg-brit-gold transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
+              <span className="absolute bottom-0 left-0 w-full h-0.5 bg-[#D4AF37] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left shadow-lg shadow-[#D4AF37]/50"></span>
             </div>
             <Link
-              href="/#contact-us"
-              className="relative group px-3 py-2 text-white hover:text-brit-gold font-bold uppercase text-base tracking-wide transition-colors duration-300"
+              href="/gallery"
+              className="relative group px-3 py-2 text-white hover:text-[#D4AF37] font-bold uppercase text-base tracking-wide cursor-pointer transition-colors duration-300"
             >
-              <span>Contact Us</span>
-              <span className="absolute bottom-0 left-0 w-full h-0.5 bg-brit-gold transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
+              <span className="drop-shadow-md">Gallery</span>
+              <span className="absolute bottom-0 left-0 w-full h-0.5 bg-[#D4AF37] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left shadow-lg shadow-[#D4AF37]/50"></span>
+            </Link>
+            <Link
+              href="/#contact-us"
+              className="relative group px-3 py-2 text-white hover:text-[#D4AF37] font-bold uppercase text-base tracking-wide transition-colors duration-300"
+            >
+              <span className="drop-shadow-md">Contact Us</span>
+              <span className="absolute bottom-0 left-0 w-full h-0.5 bg-[#D4AF37] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left shadow-lg shadow-[#D4AF37]/50"></span>
             </Link>
           </nav>
 
@@ -237,7 +245,7 @@ export default function Header() {
               href="https://www.instagram.com/brit_treat/"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-white hover:text-brit-gold bg-white/10 p-2 rounded-full transition-all duration-300 hover:bg-white/20"
+              className="text-white hover:text-[#D4AF37] bg-white/10 p-2 rounded-full transition-all duration-300 hover:bg-[#D4AF37]/20 hover:shadow-lg hover:shadow-[#D4AF37]/30 backdrop-blur-sm"
               aria-label="Instagram"
             >
               <Instagram size={18} />
@@ -246,7 +254,7 @@ export default function Header() {
               href="https://www.facebook.com/profile.php?id=100090802361398"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-white hover:text-brit-gold bg-white/10 p-2 rounded-full transition-all duration-300 hover:bg-white/20"
+              className="text-white hover:text-[#D4AF37] bg-white/10 p-2 rounded-full transition-all duration-300 hover:bg-[#D4AF37]/20 hover:shadow-lg hover:shadow-[#D4AF37]/30 backdrop-blur-sm"
               aria-label="Facebook"
             >
               <Facebook size={18} />
@@ -255,23 +263,29 @@ export default function Header() {
               href="https://wa.me/447979405646"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-white hover:text-brit-gold bg-white/10 p-2 rounded-full transition-all duration-300 hover:bg-white/20"
+              className="text-white hover:text-[#D4AF37] bg-white/10 p-2 rounded-full transition-all duration-300 hover:bg-[#D4AF37]/20 hover:shadow-lg hover:shadow-[#D4AF37]/30 backdrop-blur-sm"
               aria-label="WhatsApp"
             >
-              <WhatsApp size={18} />
+              <Phone size={18} />
             </Link>
             <Link
               href="https://www.linkedin.com/company/astha-group-uk-ltd/"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-white hover:text-brit-gold bg-white/10 p-2 rounded-full transition-all duration-300 hover:bg-white/20"
+              className="text-white hover:text-[#D4AF37] bg-white/10 p-2 rounded-full transition-all duration-300 hover:bg-[#D4AF37]/20 hover:shadow-lg hover:shadow-[#D4AF37]/30 backdrop-blur-sm"
               aria-label="LinkedIn"
             >
               <Linkedin size={18} />
             </Link>
           </div>
+
+          {/* Mobile Menu Component */}
+          <MobileMenu />
         </div>
       </div>
+
+      {/* Subtle bottom glow effect */}
+      <div className="h-px w-full bg-gradient-to-r from-transparent via-[#D4AF37]/30 to-transparent absolute bottom-0"></div>
     </header>
   )
 }

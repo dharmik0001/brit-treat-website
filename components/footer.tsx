@@ -1,6 +1,6 @@
 import Link from "next/link"
 import Image from "next/image"
-import { Facebook, Instagram, PhoneIcon as WhatsApp, Linkedin, ChevronRight } from "lucide-react"
+import { Facebook, Instagram, Phone, Linkedin, ChevronRight } from "lucide-react"
 
 export default function Footer() {
   return (
@@ -40,6 +40,10 @@ export default function Footer() {
             </Link>
             <Link href="/#our-story" className="text-white hover:text-brit-gold font-medium text-sm relative group">
               <span>OUR STORY</span>
+              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-brit-gold transition-all duration-300 group-hover:w-full"></span>
+            </Link>
+            <Link href="/gallery" className="text-white hover:text-brit-gold font-medium text-sm relative group">
+              <span>GALLERY</span>
               <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-brit-gold transition-all duration-300 group-hover:w-full"></span>
             </Link>
             <Link
@@ -84,7 +88,7 @@ export default function Footer() {
               className="text-white hover:text-brit-gold bg-white/10 p-2 rounded-full transition-all duration-300 hover:bg-white/20"
               aria-label="WhatsApp"
             >
-              <WhatsApp size={20} />
+              <Phone size={20} />
             </Link>
             <Link
               href="https://www.linkedin.com/company/astha-group-uk-ltd/"

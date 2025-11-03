@@ -4,7 +4,7 @@ import Header from "@/components/header"
 import MobileMenu from "@/components/mobile-menu"
 import Footer from "@/components/footer"
 
-// Expanded product data with the new blue tin product
+// Expanded product data with the new blue tin product and chocolate chip cookies box
 const productData = {
   "butter-cookies-blue-tin": {
     id: "butter-cookies-blue-tin",
@@ -69,7 +69,10 @@ const productData = {
     description: "Bite-sized chocolate chip cookies in a convenient resealable container, perfect for snacking.",
     longDescription:
       "Our Mini Chocolate Chip Cookies bring you all the delicious taste of traditional chocolate chip cookies in perfectly bite-sized portions. Packed in a convenient, resealable brown container, these mini treats are perfect for on-the-go snacking, lunchboxes, or sharing with friends.\n\nEach mini cookie is loaded with premium chocolate chips and baked to achieve the perfect balance of crispy edges and soft centers. Despite their small size, these cookies pack a big flavor punch, delivering the same quality and taste you expect from Brit Treat in a more convenient format.\n\nThe resealable container keeps the cookies fresh and makes them perfect for portion control or sharing. Whether you're at work, school, or traveling, these mini chocolate chip cookies provide a satisfying treat that's always within reach. Made with the same high-quality ingredients and traditional baking methods as our full-sized cookies.",
-    images: ["/brit-treat-mini-chocochip-cookies.png", "/placeholder.svg?height=600&width=600&text=Mini+Cookies+Detail"],
+    images: [
+      "/brit-treat-mini-chocochip-cookies.png",
+      "/placeholder.svg?height=600&width=600&text=Mini+Cookies+Detail",
+    ],
     features: [
       "Bite-sized convenience",
       "Premium chocolate chips",
@@ -80,7 +83,7 @@ const productData = {
     ],
     category: "Cookies",
     price: "£5.99",
-    relatedProducts: ["chocolate-chip-cookies", "assorted-cookies-gift-box"],
+    relatedProducts: ["chocochip-cookies-box", "assorted-cookies-gift-box"],
   },
   "assorted-cookies": {
     id: "assorted-cookies",
@@ -219,6 +222,29 @@ const productData = {
     category: "Cookies",
     price: "£7.99",
     relatedProducts: ["ginger-cookies", "chocolate-chip-cookies"],
+  },
+  "chocochip-cookies-box": {
+    id: "chocochip-cookies-box",
+    name: "Brit Treat Chocolate Chip Cookies - London Box",
+    description:
+      "Premium chocolate chip cookies in a beautiful London-themed presentation box featuring iconic British landmarks.",
+    longDescription:
+      "Experience the perfect blend of British tradition and beloved chocolate chip indulgence with our London Box Chocolate Chip Cookies. This stunning presentation box features the iconic London skyline including Big Ben, the London Eye, and other famous landmarks, making it a perfect souvenir or gift that captures the essence of British culture.\n\nInside this beautifully designed box, you'll discover our finest chocolate chip cookies, each loaded with premium chocolate chips and baked to achieve the perfect balance of crispy edges and soft, chewy centers. Made using traditional British baking techniques combined with everyone's favorite chocolate chip recipe.\n\nThe box itself celebrates British heritage with its elegant design featuring London's most recognizable landmarks against a warm, inviting background. It's not just a cookie collection - it's a celebration of British culture that makes for an unforgettable gift or a special treat to share with family and friends.",
+    images: [
+      "/brit-treat-chocochip-cookies-box.png",
+      "/placeholder.svg?height=600&width=600&text=Chocolate+Chip+Detail",
+    ],
+    features: [
+      "Beautiful London landmarks design",
+      "Premium chocolate chip cookies",
+      "Perfect gift box presentation",
+      "Traditional British baking techniques",
+      "No artificial preservatives",
+      "Collectible presentation box",
+    ],
+    category: "Cookies",
+    price: "£9.99",
+    relatedProducts: ["mini-chocochip-cookies", "assorted-cookies-gift-box"],
   },
 }
 

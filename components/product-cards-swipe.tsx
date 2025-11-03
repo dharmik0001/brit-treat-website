@@ -4,24 +4,24 @@ import type React from "react"
 
 import { useState, useRef } from "react"
 import Image from "next/image"
-import Link from "next/link"
 
-interface GalleryItem {
-  imageSrc: string
-  imageAlt: string
-  title: string
+interface Product {
+  id: string
+  name: string
+  image: string
   description: string
-  link?: string
+  link: string
 }
 
-interface MobileSwipeGalleryProps {
-  items: GalleryItem[]
+interface ProductCardsSwipeProps {
+  products: Product[]
 }
 
-export default function MobileSwipeGallery({ items }: MobileSwipeGalleryProps) {
+export default function ProductCardsSwipe({ products }: ProductCardsSwipeProps) {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [touchStart, setTouchStart] = useState<number | null>(null)
   const [touchEnd, setTouchEnd] = useState<number | null>(null)
+  const [clickedProduct, setClickedProduct] = useState<string | null>(null)
   const containerRef = useRef<HTMLDivElement>(null)
 
   // Minimum swipe distance (in px)
@@ -52,22 +52,33 @@ export default function MobileSwipeGallery({ items }: MobileSwipeGalleryProps) {
   }
 
   const nextSlide = () => {
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % items.length)
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % products.length)
   }
 
   const prevSlide = () => {
-    setCurrentIndex((prevIndex) => (prevIndex - 1 + items.length) % items.length)
+    setCurrentIndex((prevIndex) => (prevIndex - 1 + products.length) % products.length)
   }
 
   const goToSlide = (index: number) => {
     setCurrentIndex(index)
   }
 
+  const handleProductClick = (productId: string, link: string) => {
+    setClickedProduct(productId)
+    setTimeout(() => {
+      window.location.href = link
+    }, 200)
+  }
+
+  if (products.length === 0) {
+    return null
+  }
+
   return (
-    <div className="relative w-full" ref={containerRef}>
-      {/* Main Gallery */}
+    <div className="md:hidden" ref={containerRef}>
+      {/* Main Swipe Gallery */}
       <div
-        className="relative overflow-hidden rounded-lg bg-white shadow-lg"
+        className="relative overflow-hidden rounded-lg"
         onTouchStart={onTouchStart}
         onTouchMove={onTouchMove}
         onTouchEnd={onTouchEnd}
@@ -76,43 +87,44 @@ export default function MobileSwipeGallery({ items }: MobileSwipeGalleryProps) {
           className="flex transition-transform duration-500 ease-out"
           style={{ transform: `translateX(-${currentIndex * 100}%)` }}
         >
-          {items.map((item, index) => (
-            <div key={index} className="w-full flex-shrink-0">
-              <Link href={item.link || "#"} className="block">
+          {products.map((product) => (
+            <div key={product.id} className="w-full flex-shrink-0 px-2">
+              <button
+                onClick={() => handleProductClick(product.id, product.link)}
+                className={`w-full bg-white rounded-lg overflow-hidden shadow-lg transition-all duration-300 ${
+                  clickedProduct === product.id ? "scale-90" : ""
+                }`}
+              >
                 <div className="relative h-80 bg-gray-50">
                   <Image
-                    src={item.imageSrc || "/placeholder.svg"}
-                    alt={item.imageAlt}
+                    src={product.image || "/placeholder.svg"}
+                    alt={product.name}
                     fill
                     className="object-contain p-4"
-                    onError={(e) => {
-                      const target = e.target as HTMLImageElement
-                      target.src = "/placeholder.svg?height=400&width=400&text=" + encodeURIComponent(item.title)
-                    }}
                   />
                 </div>
-                <div className="p-6 bg-white">
-                  <h3 className="text-xl font-bold text-[#0A3281] mb-3">{item.title}</h3>
-                  <p className="text-gray-700 leading-relaxed mb-4">{item.description}</p>
-                  <span className="text-[#FF6B6B] font-semibold inline-flex items-center gap-2">
-                    View Collection
+                <div className="p-6 text-left">
+                  <h3 className="text-xl font-bold text-[#0A3281] mb-2">{product.name}</h3>
+                  <p className="text-gray-600">{product.description}</p>
+                  <span className="text-[#FF6B6B] font-semibold inline-flex items-center gap-2 mt-4">
+                    View Details
                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                     </svg>
                   </span>
                 </div>
-              </Link>
+              </button>
             </div>
           ))}
         </div>
 
         {/* Navigation Arrows */}
-        {items.length > 1 && (
+        {products.length > 1 && (
           <>
             <button
               onClick={prevSlide}
-              className="absolute left-2 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white text-[#0A3281] p-3 rounded-full shadow-lg transition-all z-10"
-              aria-label="Previous image"
+              className="absolute left-2 top-1/3 -translate-y-1/2 bg-white/90 hover:bg-white text-[#0A3281] p-3 rounded-full shadow-lg transition-all z-10"
+              aria-label="Previous product"
             >
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -120,8 +132,8 @@ export default function MobileSwipeGallery({ items }: MobileSwipeGalleryProps) {
             </button>
             <button
               onClick={nextSlide}
-              className="absolute right-2 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white text-[#0A3281] p-3 rounded-full shadow-lg transition-all z-10"
-              aria-label="Next image"
+              className="absolute right-2 top-1/3 -translate-y-1/2 bg-white/90 hover:bg-white text-[#0A3281] p-3 rounded-full shadow-lg transition-all z-10"
+              aria-label="Next product"
             >
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -132,9 +144,9 @@ export default function MobileSwipeGallery({ items }: MobileSwipeGalleryProps) {
       </div>
 
       {/* Dots Indicator */}
-      {items.length > 1 && (
+      {products.length > 1 && (
         <div className="flex justify-center mt-6 space-x-2">
-          {items.map((_, index) => (
+          {products.map((_, index) => (
             <button
               key={index}
               onClick={() => goToSlide(index)}
@@ -149,7 +161,7 @@ export default function MobileSwipeGallery({ items }: MobileSwipeGalleryProps) {
 
       {/* Slide Counter */}
       <div className="text-center mt-4 text-sm text-gray-600">
-        {currentIndex + 1} / {items.length}
+        {currentIndex + 1} / {products.length}
       </div>
     </div>
   )

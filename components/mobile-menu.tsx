@@ -4,7 +4,6 @@ import type React from "react"
 
 import { useState, useEffect } from "react"
 import Link from "next/link"
-import Image from "next/image"
 import { Menu, X, ChevronDown } from "lucide-react"
 
 export default function MobileMenu() {
@@ -64,23 +63,11 @@ export default function MobileMenu() {
       </button>
 
       {isOpen && (
-        <div className="fixed inset-0 bg-brit-blue z-40 flex flex-col mobile-menu-container">
-          <div className="p-4 border-b border-white/10 flex items-center">
-            <Link href="/" onClick={closeMenu}>
-              <Image
-                src="/brit-treat-logo.png"
-                alt="Brit Treat"
-                width={100}
-                height={40}
-                className="h-auto brightness-125 contrast-125"
-              />
-            </Link>
-          </div>
-
+        <div className="fixed inset-0 bg-[#0A3281] z-40 flex flex-col mobile-menu-container pt-20">
           <nav className="flex flex-col p-6 overflow-y-auto flex-grow">
             <Link
               href="/"
-              className="text-white hover:text-brit-gold font-bold uppercase text-xl tracking-wide py-4 border-b border-white/10"
+              className="text-white hover:text-[#D4AF37] font-bold uppercase text-xl tracking-wide py-4 border-b border-white/10"
               onClick={closeMenu}
             >
               Home
@@ -88,7 +75,7 @@ export default function MobileMenu() {
 
             <Link
               href="/#our-story"
-              className="text-white hover:text-brit-gold font-bold uppercase text-xl tracking-wide py-4 border-b border-white/10"
+              className="text-white hover:text-[#D4AF37] font-bold uppercase text-xl tracking-wide py-4 border-b border-white/10"
               onClick={closeMenu}
             >
               Our Story
@@ -97,7 +84,7 @@ export default function MobileMenu() {
             <div className="py-4 border-b border-white/10">
               <button
                 onClick={toggleProducts}
-                className="text-white hover:text-brit-gold font-bold uppercase text-xl tracking-wide w-full text-left flex items-center justify-between"
+                className="text-white hover:text-[#D4AF37] font-bold uppercase text-xl tracking-wide w-full text-left flex items-center justify-between"
               >
                 Our Products
                 <ChevronDown className={`transition-transform duration-300 ${productsOpen ? "rotate-180" : ""}`} />
@@ -107,28 +94,28 @@ export default function MobileMenu() {
                 <div className="mt-2 pl-4 space-y-3">
                   <Link
                     href="/products/cookies"
-                    className="text-white/80 hover:text-brit-gold font-medium uppercase text-lg block py-2"
+                    className="text-white/80 hover:text-[#D4AF37] font-medium uppercase text-lg block py-2"
                     onClick={closeMenu}
                   >
                     Cookies Collection
                   </Link>
                   <Link
                     href="/products/drinks"
-                    className="text-white/80 hover:text-brit-gold font-medium uppercase text-lg block py-2"
+                    className="text-white/80 hover:text-[#D4AF37] font-medium uppercase text-lg block py-2"
                     onClick={closeMenu}
                   >
                     Non-Alcoholic Drinks
                   </Link>
                   <Link
                     href="/products/peanut-butter"
-                    className="text-white/80 hover:text-brit-gold font-medium uppercase text-lg block py-2"
+                    className="text-white/80 hover:text-[#D4AF37] font-medium uppercase text-lg block py-2"
                     onClick={closeMenu}
                   >
                     Delicious Spreads
                   </Link>
                   <Link
                     href="/products/coffee"
-                    className="text-white/80 hover:text-brit-gold font-medium uppercase text-lg block py-2"
+                    className="text-white/80 hover:text-[#D4AF37] font-medium uppercase text-lg block py-2"
                     onClick={closeMenu}
                   >
                     Coffee Collection
@@ -138,8 +125,16 @@ export default function MobileMenu() {
             </div>
 
             <Link
+              href="/gallery"
+              className="text-white hover:text-[#D4AF37] font-bold uppercase text-xl tracking-wide py-4 border-b border-white/10"
+              onClick={closeMenu}
+            >
+              Gallery
+            </Link>
+
+            <Link
               href="/#contact-us"
-              className="text-white hover:text-brit-gold font-bold uppercase text-xl tracking-wide py-4 border-b border-white/10"
+              className="text-white hover:text-[#D4AF37] font-bold uppercase text-xl tracking-wide py-4 border-b border-white/10"
               onClick={closeMenu}
             >
               Contact Us
@@ -151,7 +146,7 @@ export default function MobileMenu() {
               href="https://www.instagram.com/brit_treat/"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-white hover:text-brit-gold bg-white/10 p-3 rounded-full"
+              className="text-white hover:text-[#D4AF37] bg-white/10 p-3 rounded-full"
               aria-label="Instagram"
             >
               <svg
@@ -174,7 +169,7 @@ export default function MobileMenu() {
               href="https://www.facebook.com/profile.php?id=100090802361398"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-white hover:text-brit-gold bg-white/10 p-3 rounded-full"
+              className="text-white hover:text-[#D4AF37] bg-white/10 p-3 rounded-full"
               aria-label="Facebook"
             >
               <svg
@@ -195,7 +190,7 @@ export default function MobileMenu() {
               href="https://wa.me/447979405646"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-white hover:text-brit-gold bg-white/10 p-3 rounded-full"
+              className="text-white hover:text-[#D4AF37] bg-white/10 p-3 rounded-full"
               aria-label="WhatsApp"
             >
               <svg

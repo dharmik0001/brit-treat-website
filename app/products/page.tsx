@@ -3,7 +3,6 @@ import Link from "next/link"
 import Header from "@/components/header"
 import MobileMenu from "@/components/mobile-menu"
 import Footer from "@/components/footer"
-import ProductCategoryNav from "@/components/product-category-nav"
 import { ArrowRight } from "lucide-react"
 
 export const metadata = {
@@ -56,9 +55,6 @@ export default function ProductsPage() {
           </Link>
         </div>
       </div>
-
-      {/* Product Category Navigation */}
-      <ProductCategoryNav />
 
       {/* Product Categories */}
       <section className="py-16 bg-gray-50">
