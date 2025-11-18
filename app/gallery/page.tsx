@@ -1,52 +1,57 @@
 "use client"
 
+import type React from "react"
+
 import Image from "next/image"
 import Link from "next/link"
 import Header from "@/components/header"
 import MobileMenu from "@/components/mobile-menu"
 import Footer from "@/components/footer"
-import { useState } from "react"
+import { useState, useEffect, useCallback } from "react"
 
 export default function GalleryPage() {
-  const [selectedImage, setSelectedImage] = useState<string | null>(null)
+  const [selectedImageIndex, setSelectedImageIndex] = useState<number | null>(null)
+  const [touchStart, setTouchStart] = useState<number | null>(null)
+  const [touchEnd, setTouchEnd] = useState<number | null>(null)
 
-  // Placeholder for gallery images - you can add your images here later
   const galleryImages = [
+    // Row 1
     {
       id: 1,
-      src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/BRIT%20TREAT%20BOX%2012x300gm%20-Chocochips%20Cookies-TtyyFYrrgHQL5k5kzSGXeZQjcCEMl5.jpg",
-      alt: "BRIT TREAT BOX 12x300gm - Chocochip Cookies",
-      category: "Cookies",
+      src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/BRIT%20TREAT%20BOX%2012x300gm%20-assorted%20Cookies-wCITZoRlfAK8YKhxlICfJfyMiN8LLh.jpg",
+      alt: "BRIT TREAT BOX 12x300gm - Assorted Cookies",
+      category: "Assorted Cookies",
     },
     {
       id: 2,
       src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/BRIT%20TREAT%20Christmas%20Collection%20Tins%2012x340gm-wm3SQ8vMfgJZI6S3MavVKcQjjNbM5O.jpg",
       alt: "BRIT TREAT Christmas Collection Tins 12x340gm",
-      category: "Cookies",
+      category: "Butter Cookies",
     },
     {
       id: 3,
-      src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/BB-gjELM7EDSIYQJ1ppmtqR44k2hqr4EZ.jpg",
-      alt: "Butter Cookies Tin - Blue",
-      category: "Cookies",
+      src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/BB-1J58R5lUDsPfx0lgGE2lCDWkfBoPuW.jpg",
+      alt: "Butter Cookies - Premium Product Shot",
+      category: "Butter Cookies",
     },
     {
       id: 4,
       src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/BRIT%20TREAT%20MINI%20CUP%20125gm%20-%20Choco%20Chip%20Cookies-E6HDWfKeOYWSQoR8ZFmI5thaMXWiAZ.jpg",
       alt: "BRIT TREAT Mini Cup 125gm - Choco Chip Cookies",
-      category: "Cookies",
+      category: "Mini Cookies",
     },
+    // Row 2
     {
       id: 5,
       src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/BRIT%20TREAT%20BOX%2012x300gm%20-assorted%20Cookies-wCITZoRlfAK8YKhxlICfJfyMiN8LLh.jpg",
       alt: "BRIT TREAT BOX 12x300gm - Assorted Cookies",
-      category: "Cookies",
+      category: "Assorted Cookies",
     },
     {
       id: 6,
-      src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/BRIT%20TREAT%20Cookies%20Tins%2024x140gm%20%28RED-%20XMAS%29-ZejKibr6LcvB4f1FOQeleTcXxqrFOY.jpg",
-      alt: "BRIT TREAT Cookies Tins 24x140gm (Red - Christmas)",
-      category: "Cookies",
+      src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/BT-RED-vKUlZsUx8VJWbUMJt4zbvmrobYXLjP.png",
+      alt: "Red Butter Cookies Tin in Bag",
+      category: "Butter Cookies",
     },
     {
       id: 7,
@@ -56,45 +61,47 @@ export default function GalleryPage() {
     },
     {
       id: 8,
-      src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/BRIT%20TREAT%20Cookies%20Tins%2024x%20140gm-YeZzurOq5Vw2KJ77eJNOlloiHp0Va2.jpg",
-      alt: "BRIT TREAT Cookies Tins 24x140gm (Blue - Original)",
-      category: "Cookies",
+      src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/BRIT%20TREAT%20Cookies%20Tins%2024x140gm%20%28RED-%20XMAS%29-ZejKibr6LcvB4f1FOQeleTcXxqrFOY.jpg",
+      alt: "BRIT TREAT Cookies Tins 24x140gm (Red - Christmas)",
+      category: "Butter Cookies",
     },
+    // Row 3
     {
       id: 9,
-      src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/BRIT%20TREAT%20Cookies%20Tins%2012x%20340gm-L8KjOIYYlij5MPcLMBo2zoeDCkmkI6.jpg",
-      alt: "BRIT TREAT Cookies Tins 12x340gm (Blue - Original)",
-      category: "Cookies",
+      src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/BRIT%20TREAT%20Cookies%20Tins%2024x%20140gm-YeZzurOq5Vw2KJ77eJNOlloiHp0Va2.jpg",
+      alt: "BRIT TREAT Cookies Tins 24x140gm (Blue - Original)",
+      category: "Butter Cookies",
     },
     {
       id: 10,
-      src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/BT-RED-vKUlZsUx8VJWbUMJt4zbvmrobYXLjP.png",
-      alt: "Red Butter Cookies Tin - Christmas Edition",
-      category: "Featured",
+      src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/BRIT%20TREAT%20Cookies%20Tins%2012x%20340gm-L8KjOIYYlij5MPcLMBo2zoeDCkmkI6.jpg",
+      alt: "BRIT TREAT Cookies Tins 12x340gm (Blue - Original) with Christmas Gift",
+      category: "Butter Cookies",
     },
     {
       id: 11,
       src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/F-6LqmiWkmZ64SBNEfBMKMJTnYfUQpmO.jpg",
       alt: "Mini Cookies - Marketing Banner",
-      category: "Featured",
+      category: "Mini Cookies",
     },
     {
       id: 12,
       src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/L-rBxa5bvrUK7yU6oxCzkmPlEwn1aCxv.jpg",
       alt: "Chocochip Cookies - Lifestyle Scene",
-      category: "Featured",
+      category: "Chocochip Cookies",
     },
+    // Row 4
     {
       id: 13,
       src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/B-O7bMdwiqozb6sCjNpWJKbT0WmjFHdy.jpg",
       alt: "Butter Cookies - Christmas Holiday Theme",
-      category: "Featured",
+      category: "Lifestyle",
     },
     {
       id: 14,
-      src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/BB-1J58R5lUDsPfx0lgGE2lCDWkfBoPuW.jpg",
-      alt: "Butter Cookies - Premium Product Shot",
-      category: "Cookies",
+      src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/BB-gjELM7EDSIYQJ1ppmtqR44k2hqr4EZ.jpg",
+      alt: "Butter Cookies Tin - Blue Clean Shot",
+      category: "Butter Cookies",
     },
     {
       id: 15,
@@ -106,15 +113,74 @@ export default function GalleryPage() {
       id: 16,
       src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/J-9cpKi4hJ0AnMK66FmD965mxbHQnniM.jpg",
       alt: "Butter Cookies - Breakfast and Picnic Scenes",
-      category: "Featured",
+      category: "Lifestyle",
     },
+    // Row 5
     {
       id: 17,
       src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/H-Th2Cwt92sVcRpT416nCoeRLVsfXezd.jpg",
       alt: "Butter Cookies - Lifestyle Moments Collection",
-      category: "Featured",
+      category: "Lifestyle",
     },
   ]
+
+  const goToNext = useCallback(() => {
+    if (selectedImageIndex !== null && selectedImageIndex < galleryImages.length - 1) {
+      setSelectedImageIndex(selectedImageIndex + 1)
+    }
+  }, [selectedImageIndex, galleryImages.length])
+
+  const goToPrevious = useCallback(() => {
+    if (selectedImageIndex !== null && selectedImageIndex > 0) {
+      setSelectedImageIndex(selectedImageIndex - 1)
+    }
+  }, [selectedImageIndex])
+
+  const closeModal = useCallback(() => {
+    setSelectedImageIndex(null)
+  }, [])
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (selectedImageIndex === null) return
+
+      if (e.key === "ArrowRight") {
+        goToNext()
+      } else if (e.key === "ArrowLeft") {
+        goToPrevious()
+      } else if (e.key === "Escape") {
+        closeModal()
+      }
+    }
+
+    window.addEventListener("keydown", handleKeyDown)
+    return () => window.removeEventListener("keydown", handleKeyDown)
+  }, [selectedImageIndex, goToNext, goToPrevious, closeModal])
+
+  const minSwipeDistance = 50
+
+  const onTouchStart = (e: React.TouchEvent) => {
+    setTouchEnd(null)
+    setTouchStart(e.targetTouches[0].clientX)
+  }
+
+  const onTouchMove = (e: React.TouchEvent) => {
+    setTouchEnd(e.targetTouches[0].clientX)
+  }
+
+  const onTouchEnd = () => {
+    if (!touchStart || !touchEnd) return
+
+    const distance = touchStart - touchEnd
+    const isLeftSwipe = distance > minSwipeDistance
+    const isRightSwipe = distance < -minSwipeDistance
+
+    if (isLeftSwipe) {
+      goToNext()
+    } else if (isRightSwipe) {
+      goToPrevious()
+    }
+  }
 
   return (
     <div className="min-h-screen bg-white">
@@ -146,11 +212,11 @@ export default function GalleryPage() {
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            {galleryImages.map((image) => (
+            {galleryImages.map((image, index) => (
               <div
                 key={image.id}
                 className="group relative overflow-hidden rounded-lg shadow-md hover:shadow-2xl transition-all duration-300 cursor-pointer bg-white"
-                onClick={() => setSelectedImage(image.src)}
+                onClick={() => setSelectedImageIndex(index)}
               >
                 <div className="relative h-80 bg-gray-100">
                   <Image
@@ -193,27 +259,68 @@ export default function GalleryPage() {
       </section>
 
       {/* Lightbox Modal */}
-      {selectedImage && (
+      {selectedImageIndex !== null && (
         <div
           className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4"
-          onClick={() => setSelectedImage(null)}
+          onClick={closeModal}
+          onTouchStart={onTouchStart}
+          onTouchMove={onTouchMove}
+          onTouchEnd={onTouchEnd}
         >
+          {/* Close Button */}
           <button
-            className="absolute top-4 right-4 text-white hover:text-[#D4AF37] transition-colors"
-            onClick={() => setSelectedImage(null)}
+            className="absolute top-4 right-4 text-white hover:text-[#D4AF37] transition-colors z-10"
+            onClick={closeModal}
           >
             <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
             </svg>
           </button>
+
+          {/* Previous Button */}
+          {selectedImageIndex > 0 && (
+            <button
+              className="absolute left-4 top-1/2 -translate-y-1/2 text-white hover:text-[#D4AF37] transition-colors z-10 bg-black/50 rounded-full p-3 hover:bg-black/70"
+              onClick={(e) => {
+                e.stopPropagation()
+                goToPrevious()
+              }}
+            >
+              <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+              </svg>
+            </button>
+          )}
+
+          {/* Next Button */}
+          {selectedImageIndex < galleryImages.length - 1 && (
+            <button
+              className="absolute right-4 top-1/2 -translate-y-1/2 text-white hover:text-[#D4AF37] transition-colors z-10 bg-black/50 rounded-full p-3 hover:bg-black/70"
+              onClick={(e) => {
+                e.stopPropagation()
+                goToNext()
+              }}
+            >
+              <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
+            </button>
+          )}
+
+          {/* Image Container */}
           <div className="relative max-w-5xl max-h-[90vh] w-full h-full">
             <Image
-              src={selectedImage || "/placeholder.svg"}
-              alt="Gallery image"
+              src={galleryImages[selectedImageIndex].src || "/placeholder.svg"}
+              alt={galleryImages[selectedImageIndex].alt}
               fill
               className="object-contain"
               onClick={(e) => e.stopPropagation()}
             />
+          </div>
+
+          {/* Image Counter */}
+          <div className="absolute bottom-4 left-1/2 -translate-x-1/2 text-white bg-black/50 px-4 py-2 rounded-full">
+            {selectedImageIndex + 1} / {galleryImages.length}
           </div>
         </div>
       )}

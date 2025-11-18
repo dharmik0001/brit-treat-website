@@ -129,30 +129,6 @@ export default function Home() {
             >
               FINEST BUTTER COOKIES SELECTION
             </p>
-            <Link
-              href="https://www.amazon.co.uk/BRIT-TREAT-Luxury-Cookies-Selection/dp/B0F3XZWBR5/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group relative overflow-hidden bg-gradient-to-r from-[#FF6B6B] to-[#FF5252] text-white px-8 py-4 uppercase text-lg tracking-wider font-bold inline-flex items-center gap-2 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 hover:scale-105"
-            >
-              <span className="relative z-10">SHOP NOW ON AMAZON</span>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M16 11l-4-4m0 0l-4 4m4-4v12"
-                  transform="rotate(90, 12, 12)"
-                />
-              </svg>
-              <span className="absolute inset-0 bg-white/20 scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300 rounded-lg"></span>
-            </Link>
           </div>
         </div>
       </section>
